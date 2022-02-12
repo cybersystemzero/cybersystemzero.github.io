@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {background-color:rgb(10,10,10);color:rgb(150,0,0);font-family:Arial;margin:25px;}
+pre {margin-bottom:-10px;font-family:Arial;font-size:8px;}
+#logo {position:absolute;left:0px;top:0px;}
+#title {position:absolute;left:250px;top:35px;}
+p {font-size:20px;}
+input,textarea {background-color:rgb(10,10,10);border:3px dotted rgb(150,0,0);;outline:none;color:rgb(150,0,0);font-size:20px;font-family:Arial;}
+input::placeholder,textarea::placeholder {color:rgb(150,0,0);}
+#console {width:100%;height:500px;overflow:auto;}
+textarea {left:10px;right:10px;position:absolute;height:300px;min-height:300px;max-height:300px;}
+</style>
+</head>
+<body>
+<h1 id="title">CyberChill CyberSystem Zero</h1>
+<div id="logo">
+<pre>###########################################</pre>
+<pre>#                                                                                  #</pre>
+<pre>#      ###################################      #</pre>
+<pre>#      #                                                                  #      #</pre>
+<pre>#      #                ##########################      #</pre>
+<pre>#      #                    #####                                    #      #</pre>
+<pre>#      #                          ######                            #      #</pre>
+<pre>#      #                                   #####                     #      #</pre>
+<pre>#      #########################                  #      #</pre>
+<pre>#      #                                                                  #      #</pre>
+<pre>#      ###################################      #</pre>
+<pre>#                                       ##                                       #</pre>
+<pre>#                                       ##                                       #</pre>
+<pre>#                                       ##                                       #</pre>
+<pre>#                                       ##                                       #</pre>
+<pre>#                                       ##                                       #</pre>
+<pre>#      ###################################      #</pre>
+<pre>#                                                                                  #</pre>
+<pre>###########################################</pre>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="console">
+<p style="color:rgb(150,0,0);overflow:hidden;font-size:80px;position:absolute;left:0px;right:0px;top:0px;">_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</p>
+<p onclick="start()"> >[START]</p>
+</div>
+
+<script>
+var console = document.getElementById("console");
+
+function focusC() {
+console.innerHTML += '<p id="focus">FOCUS</p>'
+
+var focus = document.getElementById("focus")
+focus.scrollIntoView()
+focus.remove()
+}
+
+function start() {
+if(localStorage.getItem('cccszeronewuser') == null) {
+tutorial()
+focusC()
+}
+else {
+console.innerHTML += '<p> > Welcome, '+localStorage.cccszeroname+'</p>'
+console.innerHTML += '<p> > How are you today?</p>'
+console.innerHTML += '<p onclick="feelGood()"> > [GOOD, THANK YOU]</p>'
+console.innerHTML += '<p onclick="feelBad()"> > [NOT SO WELL TODAY]</p>'
+focusC()
+}
+}
+
+function tutorial() {
+console.innerHTML += '<p > > So it seems you are new here.</p>'
+console.innerHTML += '<p > > What is your name?</p>'
+console.innerHTML += '<p> > <input id="nameInput" type="search" placeholder="..."></p>'
+console.innerHTML += '<p onclick="submitName()" > > [SUBMIT]</p>' 	
+focusC()
+}
+
+function submitName() {
+var nameInput = document.getElementById("nameInput").value
+if(nameInput != "") {
+console.innerHTML += '<p> > Hi, '+nameInput+'!</p>'
+localStorage.cccszeroname = nameInput
+console.innerHTML += '<p> > So, would you like a tutorial to help you get started?</p>'
+console.innerHTML += '<p onclick="yesTutorial()"> > [YES]</p>'
+console.innerHTML += '<p onclick="noTutorial()"> > [NO]</p>'
+focusC()
+}
+else {
+console.innerHTML += '<p> > Actually enter a name, if you are nothing then why are you here?</p>'
+focusC()
+}
+}
+
+function yesTutorial() {
+console.innerHTML += '<p> > ########### Tutorial ###########</p>'
+console.innerHTML += '<p> > Alright, so this is a Command Line Interface operating system.</p>'
+console.innerHTML += '<p> > That means its a bit more difficult to use, but it shouldn\'t be too difficult.</p>'
+focusC()
+}
+
+function noTutorial() {
+console.innerHTML += '<p> > So you decided not to do a tutorial.</p>'
+console.innerHTML += '<p> > You do realise it is not that easy to use.</p>'
+console.innerHTML += '<p> > So are you sure?</p>'
+console.innerHTML += '<p onclick="noSureTutorial()"> > [YES]</p>'
+console.innerHTML += '<p onclick="yesTutorial()"> > [NO]</p>'
+focusC()
+}
+
+function noSureTutorial() {
+console.innerHTML += '<p> > Alright then, if you are confident ennough, have fun!</p>'
+focusC()
+localStorage.cccszeronewuser = "no"
+start()
+}
+
+function feelGood() {
+console.innerHTML += '<p> > I\'m glad to hear that!</p>'
+console.innerHTML += '<p onclick="loadSystem()"> > [LOAD SYSTEM]</p>'
+focusC()
+}
+
+function feelBad() {
+console.innerHTML += '<p> > I hope you feel better soon.</p>'
+console.innerHTML += '<p onclick="loadSystem()"> > [LOAD SYSTEM]</p>'
+focusC()
+}
+
+function loadSystem() {
+console.innerHTML = '<p style="color:rgb(150,0,0);overflow:hidden;font-size:80px;position:absolute;left:0px;right:0px;top:0px;">_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</p>'
+console.innerHTML += '<p onclick="menu()"> > [MENU]</p>'
+focusC()
+}
+
+function menu() {
+console.innerHTML = '<p style="color:rgb(150,0,0);overflow:hidden;font-size:80px;position:absolute;left:0px;right:0px;top:0px;">_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</p>'
+console.innerHTML += '<p> > ############ MENU ##############</p>'
+console.innerHTML += '<p onclick="textEditor()"> > [TEXT EDITOR]</p>'
+console.innerHTML += '<p onclick="loadSystem()"> > [CLOSE MENU]</p>'
+focusC()
+}
+
+function textEditor() {
+loadSystem();
+console.innerHTML += '<p> > ############ TEXT EDITOR ##############</p>'
+console.innerHTML += '<textarea placeholder="..."></textarea>'
+}
+
+</script>
+</body>
+</html>
