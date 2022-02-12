@@ -9,8 +9,9 @@ pre {margin-bottom:-10px;font-family:Arial;font-size:8px;}
 p {font-size:20px;}
 input,textarea {background-color:rgb(10,10,10);border:none;outline:none;color:rgb(150,0,0);font-size:20px;font-family:Arial;}
 input::placeholder,textarea::placeholder {color:rgb(150,0,0);}
-#console {width:100%;height:500px;overflow:auto;}
+#systemConsole {width:100%;height:500px;overflow:auto;}
 textarea {left:10px;right:10px;position:absolute;height:300px;min-height:300px;max-height:300px;border:3px dotted rgb(150,0,0);}
+* {font-weight:bold;}
 </style>
 </head>
 <body>
@@ -44,17 +45,20 @@ textarea {left:10px;right:10px;position:absolute;height:300px;min-height:300px;m
 <br>
 <br>
 <br>
-<div id="console">
+<div id="systemConsole">
 <p style="color:rgb(150,0,0);overflow:hidden;font-size:80px;position:absolute;left:0px;right:0px;top:0px;">_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</p>
-<p onclick="start()"> >[START]</p>
+<p onclick="start()"> > [START]</p>
 </div>
 
 <script>
-alert("WARNING! UNDER DEVELOPMENT!")
-var console = document.getElementById("console");
+//Use a CLI
+//Use only one html file
+
+var systemConsole = document.getElementById("systemConsole");
+var i = 0;
 
 function focusC() {
-console.innerHTML += '<p id="focus">FOCUS</p>'
+systemConsole.innerHTML += '<p id="focus">FOCUS</p>'
 
 var focus = document.getElementById("focus")
 focus.scrollIntoView()
@@ -67,92 +71,184 @@ tutorial()
 focusC()
 }
 else {
-console.innerHTML += '<p> > Welcome, '+localStorage.cccszeroname+'</p>'
-console.innerHTML += '<p> > How are you today?</p>'
-console.innerHTML += '<p onclick="feelGood()"> > [GOOD, THANK YOU]</p>'
-console.innerHTML += '<p onclick="feelBad()"> > [NOT SO WELL TODAY]</p>'
+systemConsole.innerHTML += '<p> > Welcome, '+localStorage.cccszeroname+'</p>'
+systemConsole.innerHTML += '<p> > How are you today?</p>'
+systemConsole.innerHTML += '<p onclick="feelGood()"> > [GOOD, THANK YOU]</p>'
+systemConsole.innerHTML += '<p onclick="feelBad()"> > [NOT SO WELL TODAY]</p>'
 focusC()
 }
 }
 
 function tutorial() {
-console.innerHTML += '<p > > So it seems you are new here.</p>'
-console.innerHTML += '<p > > What is your name?</p>'
-console.innerHTML += '<p> > <input id="nameInput" type="search" placeholder="..."></p>'
-console.innerHTML += '<p onclick="submitName()" > > [SUBMIT]</p>' 	
+systemConsole.innerHTML += '<p > > So it seems you are new here.</p>'
+systemConsole.innerHTML += '<p > > What is your name?</p>'
+systemConsole.innerHTML += '<p> > <input id="nameInput" type="search" placeholder="..."></p>'
+systemConsole.innerHTML += '<p onclick="submitName()" > > [SUBMIT]</p>' 	
 focusC()
 }
 
 function submitName() {
 var nameInput = document.getElementById("nameInput").value
 if(nameInput != "") {
-console.innerHTML += '<p> > Hi, '+nameInput+'!</p>'
+systemConsole.innerHTML += '<p> > Hi, '+nameInput+'!</p>'
 localStorage.cccszeroname = nameInput
-console.innerHTML += '<p> > So, would you like a tutorial to help you get started?</p>'
-console.innerHTML += '<p onclick="yesTutorial()"> > [YES]</p>'
-console.innerHTML += '<p onclick="noTutorial()"> > [NO]</p>'
+localStorage.cccszerotextfiles = ""
+systemConsole.innerHTML += '<p> > So, would you like a tutorial to help you get started?</p>'
+systemConsole.innerHTML += '<p onclick="yesTutorial()"> > [YES]</p>'
+systemConsole.innerHTML += '<p onclick="noTutorial()"> > [NO]</p>'
 focusC()
 }
 else {
-console.innerHTML += '<p> > Actually enter a name, if you are nothing then why are you here?</p>'
+systemConsole.innerHTML += '<p> > Actually enter a name, if you are nothing then why are you here?</p>'
 focusC()
 }
 }
 
 function yesTutorial() {
-console.innerHTML += '<p> > ########### Tutorial ###########</p>'
-console.innerHTML += '<p> > Alright, so this is a Command Line Interface operating system.</p>'
-console.innerHTML += '<p> > That means its a bit more difficult to use, but it shouldn\'t be too difficult.</p>'
+systemConsole.innerHTML += '<p> > ########### Tutorial ###########</p>'
+systemConsole.innerHTML += '<p> > Alright, so this is a Command Line Interface operating system.</p>'
+systemConsole.innerHTML += '<p> > That means its a bit more difficult to use, but it shouldn\'t be too difficult.</p>'
 focusC()
 }
 
 function noTutorial() {
-console.innerHTML += '<p> > So you decided not to do a tutorial.</p>'
-console.innerHTML += '<p> > You do realise it is not that easy to use.</p>'
-console.innerHTML += '<p> > So are you sure?</p>'
-console.innerHTML += '<p onclick="noSureTutorial()"> > [YES]</p>'
-console.innerHTML += '<p onclick="yesTutorial()"> > [NO]</p>'
+systemConsole.innerHTML += '<p> > So you decided not to do a tutorial.</p>'
+systemConsole.innerHTML += '<p> > You do realise it is not that easy to use.</p>'
+systemConsole.innerHTML += '<p> > So are you sure?</p>'
+systemConsole.innerHTML += '<p onclick="noSureTutorial()"> > [YES]</p>'
+systemConsole.innerHTML += '<p onclick="yesTutorial()"> > [NO]</p>'
 focusC()
 }
 
 function noSureTutorial() {
-console.innerHTML += '<p> > Alright then, if you are confident ennough, have fun!</p>'
+systemConsole.innerHTML += '<p> > Alright then, if you are confident ennough, have fun!</p>'
 focusC()
 localStorage.cccszeronewuser = "no"
 start()
 }
 
 function feelGood() {
-console.innerHTML += '<p> > I\'m glad to hear that!</p>'
-console.innerHTML += '<p onclick="loadSystem()"> > [LOAD SYSTEM]</p>'
+systemConsole.innerHTML += '<p> > I\'m glad to hear that!</p>'
+systemConsole.innerHTML += '<p onclick="loadSystem()"> > [LOAD SYSTEM]</p>'
 focusC()
 }
 
 function feelBad() {
-console.innerHTML += '<p> > I hope you feel better soon.</p>'
-console.innerHTML += '<p onclick="loadSystem()"> > [LOAD SYSTEM]</p>'
+systemConsole.innerHTML += '<p> > I hope you feel better soon.</p>'
+systemConsole.innerHTML += '<p onclick="loadSystem()"> > [LOAD SYSTEM]</p>'
 focusC()
 }
 
 function loadSystem() {
-console.innerHTML = '<p style="color:rgb(150,0,0);overflow:hidden;font-size:80px;position:absolute;left:0px;right:0px;top:0px;">_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</p>'
-console.innerHTML += '<p onclick="menu()"> > [MENU]</p>'
+systemConsole.innerHTML = '<p style="color:rgb(150,0,0);overflow:hidden;font-size:80px;position:absolute;left:0px;right:0px;top:0px;">_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</p>'
+systemConsole.innerHTML += '<p onclick="menu()"> > [MENU]</p>'
 focusC()
 }
 
 function menu() {
-console.innerHTML = '<p style="color:rgb(150,0,0);overflow:hidden;font-size:80px;position:absolute;left:0px;right:0px;top:0px;">_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</p>'
-console.innerHTML += '<p> > ############ MENU ##############</p>'
-console.innerHTML += '<p onclick="textEditor()"> > [TEXT EDITOR]</p>'
-console.innerHTML += '<p onclick="loadSystem()"> > [CLOSE MENU]</p>'
+systemConsole.innerHTML = '<p style="color:rgb(150,0,0);overflow:hidden;font-size:80px;position:absolute;left:0px;right:0px;top:0px;">_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</p>'
+systemConsole.innerHTML += '<p> > ############ MENU ##############</p>'
+systemConsole.innerHTML += '<p onclick="textEditor(\'\')"> > [TEXT EDITOR]</p>'
+systemConsole.innerHTML += '<p onclick="freeZerobux()"> > [FREE ZEROBUX]</p>'
+systemConsole.innerHTML += '<p onclick="loadSystem()"> > [CLOSE MENU]</p>'
 focusC()
 }
 
-function textEditor() {
+function textEditor(txt2) {
 loadSystem();
-console.innerHTML += '<p> > ############ TEXT EDITOR ##############</p>'
-console.innerHTML += '<textarea placeholder="..."></textarea>'
+systemConsole.innerHTML += '<p> > ############ TEXT EDITOR ##############</p>'
+systemConsole.innerHTML += '<p onclick="loadTextEditor(document.getElementById(\'textEditor\').value)"> > [LOAD]</p>'
+systemConsole.innerHTML += '<p onclick="saveTextEditor(document.getElementById(\'textEditor\').value)"> > [SAVE]</p>'
+systemConsole.innerHTML += '<textarea placeholder="..." id="textEditor">'+txt2+'</textarea>'
+focusC()
 }
+
+function loadTextEditor(txt) {
+var txt2 = txt + ""
+loadSystem()
+systemConsole.innerHTML += '<p> > ############ TEXT EDITOR - LOAD ##############</p>'
+i = 0
+var files = localStorage.cccszerotextfiles
+files = files.split("##cccszero##")
+while(i < files.length) {
+var file = files[i].split("##cccszeroA##")
+systemConsole.innerHTML += '<p onclick="textEditor(\''+file[1]+'\')"> > ['+file[0]+']</p>'
+i = i + 1
+}
+systemConsole.innerHTML += '<p onclick="textEditor(\''+txt2+'\')"> > [CANCEL]</p>'
+}
+
+function saveTextEditor(txt) {
+var txt2 = txt + ""
+loadSystem()
+systemConsole.innerHTML += '<p> > ############ TEXT EDITOR - SAVE ##############</p>'
+i = 0
+var files = localStorage.cccszerotextfiles
+files = files.split("##cccszero##")
+while(i < files.length) {
+var file = files[i].split("##cccszeroA##")
+systemConsole.innerHTML += '<p onclick="saveTextEditorFile(this.innerHTML,\''+txt2+'\')"> > ['+file[0]+']</p>'
+i = i + 1
+}
+systemConsole.innerHTML += '<p onclick="saveAsTextEditorFile0(\''+txt2+'\')"> > [SAVE CURRENT FILE]</p>'
+systemConsole.innerHTML += '<p onclick="textEditor(\''+txt2+'\')"> > [CANCEL]</p>'
+focusC()
+}
+
+function saveAsTextEditorFile(name,txt) {
+localStorage.cccszerotextfiles = localStorage.cccszerotextfiles + "##cccszero##" + name + "##cccszeroA##" + txt
+}
+
+function saveAsTextEditorFile0(txt) {
+loadSystem()
+systemConsole.innerHTML += '<p> > ############ TEXT EDITOR - SAVE CURRENT FILE ##############</p>'
+systemConsole.innerHTML += '<p > > What do you want to call your new file?</p>'
+systemConsole.innerHTML += '<p> > <input id="textEditorFileNameInput" type="search" placeholder="..."></p>'
+systemConsole.innerHTML += '<p onclick="textEditorFileNameSubmit(\''+txt+'\')"> > [SAVE]</p>'
+systemConsole.innerHTML += '<p onclick="saveTextEditor(\''+txt+'\')"> > [CANCEL]</p>'
+focusC()
+}
+
+function textEditorFileNameSubmit(txt) {
+saveAsTextEditorFile(document.getElementById("textEditorFileNameInput").value,txt)
+textEditor(txt)
+}
+
+function saveTextEditorFile(name,txt) {
+var txt2 = txt + ""
+loadSystem()
+i = 0
+var files = localStorage.cccszerotextfiles
+files = files.split("##cccszero##")
+while(i < files.length) {
+var file = files[i].split("##cccszeroA##")
+if(name == " &gt; ["+file[0]+"]") {
+files[i] = file[0] + "##cccszeroA##" + txt2
+}
+i = i + 1
+}
+
+var newFiles = files[0]
+
+i = 1
+while(i < files.length) {
+var newFile = files[i].split("##cccszeroA##")
+newFiles += "##cccszero##" + newFile[0] + "##cccszeroA##" + newFile[1]
+i = i + 1
+}
+localStorage.cccszerotextfiles = newFiles
+
+textEditor(txt2)
+focusC()
+}
+
+function freeZerobux() {
+loadSystem()
+systemConsole.innerHTML += '<p> > Here is 1000000000 ZeroBux, I guess...</p>'
+systemConsole.innerHTML += '<p> > Current ZeroBux Balance: 1000000000 ZeroBux</p>'
+}
+
+alert("WARNING! UNDER DEVELOPMENT!")
 
 </script>
 </body>
