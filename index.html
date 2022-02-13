@@ -264,28 +264,26 @@ systemConsole.innerHTML += '<p onclick="loadCcData(document.getElementById(\'ccD
 systemConsole.innerHTML += '<p onclick="saveCcData(document.getElementById(\'ccData\').innerHTML)"> > [SAVE]</p>'
 systemConsole.innerHTML += '<p onclick="addRowCcData(document.getElementById(\'ccData\').innerHTML)"> > [ADD ROW]</p>'
 systemConsole.innerHTML += '<div placeholder="..." id="ccData">'+txt2+'</div>'
-document.getElementById('ccData').innerHTML += "<p>###################################################</p>"
+//document.getElementById('ccData').innerHTML += "<p>###################################################</p>"
 focusC()
 }
 
 
 function addRowCcData(txt) {
-document.getElementById('ccData').innerHTML += "<p># <span contenteditable=\"true\">...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> #</p><p>###################################################</p>"
+document.getElementById('ccData').innerHTML += "<p># <span contenteditable=\"true\">...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> #</p>"
 focusC()
 }
 
 function compressCcData(txt) {
 var txt2 = txt.replace(/\<span contenteditable=\"true\"\>/g,"#d#")
 var txt3 = txt2.replace(/\<\/span\>/g,"#d0#")
-var txt4 = txt3.replace(/\<p\>###################################################\<\/p\>/g,"#d1#")
-return(txt4)
+return(txt3)
 }
 
 function decompressCcData(txt) {
 var txt2 = txt.replace(/#d#/g,"<span contenteditable=\"true\">")
 var txt3 = txt2.replace(/#d0#/g,"</span>")
-var txt4 = txt3.replace(/#d1#/g,"<p>###################################################</p>")
-return(txt4)
+return(txt3)
 }
 
 
@@ -382,6 +380,7 @@ console.log("May the command line live forever.")
             console.log("May the command line live forever.")
             console.log("May the command line live forever.")
             console.log("May the command line live forever.")
+
 
 </script>
 </body>
