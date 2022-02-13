@@ -11,7 +11,8 @@ input,textarea {background-color:rgb(10,10,10);border:none;outline:none;color:rg
 input::placeholder,textarea::placeholder {color:rgb(150,0,0);}
 #systemConsole {width:100%;height:500px;overflow:auto;}
 textarea {left:10px;right:10px;position:absolute;height:300px;min-height:300px;max-height:300px;border:3px dotted rgb(150,0,0);}
-* {font-weight:bold;}
+* {font-weight:bold;outline:none;}
+#ccData {left:10px;right:10px;position:absolute;border:3px dotted rgb(150,0,0);}
 </style>
 </head>
 <body>
@@ -53,6 +54,7 @@ textarea {left:10px;right:10px;position:absolute;height:300px;min-height:300px;m
 <script>
 //Use a CLI
 //Use only one html file
+//Add easter egg: "May the command line live forever"
 
 var systemConsole = document.getElementById("systemConsole");
 var i = 0;
@@ -93,6 +95,7 @@ if(nameInput != "") {
 systemConsole.innerHTML += '<p> > Hi, '+nameInput+'!</p>'
 localStorage.cccszeroname = nameInput
 localStorage.cccszerotextfiles = ""
+localStorage.cccszerotextfiles2 = ""
 systemConsole.innerHTML += '<p> > So, would you like a tutorial to help you get started?</p>'
 systemConsole.innerHTML += '<p onclick="yesTutorial()"> > [YES]</p>'
 systemConsole.innerHTML += '<p onclick="noTutorial()"> > [NO]</p>'
@@ -129,12 +132,14 @@ start()
 
 function feelGood() {
 systemConsole.innerHTML += '<p> > I\'m glad to hear that!</p>'
+systemConsole.innerHTML += '<p> > May the command line live forever.</p>'
 systemConsole.innerHTML += '<p onclick="loadSystem()"> > [LOAD SYSTEM]</p>'
 focusC()
 }
 
 function feelBad() {
 systemConsole.innerHTML += '<p> > I hope you feel better soon.</p>'
+systemConsole.innerHTML += '<p> > May the command line live forever.</p>'
 systemConsole.innerHTML += '<p onclick="loadSystem()"> > [LOAD SYSTEM]</p>'
 focusC()
 }
@@ -148,7 +153,8 @@ focusC()
 function menu() {
 systemConsole.innerHTML = '<p style="color:rgb(150,0,0);overflow:hidden;font-size:80px;position:absolute;left:0px;right:0px;top:0px;">_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</p>'
 systemConsole.innerHTML += '<p> > ############ MENU ##############</p>'
-systemConsole.innerHTML += '<p onclick="textEditor(\'\')"> > [TEXT EDITOR]</p>'
+systemConsole.innerHTML += '<p onclick="textEditor(\'\')"> > [CYBERCHILL TEXT EDITOR]</p>'
+systemConsole.innerHTML += '<p onclick="ccData(\'\')"> > [CYBERCHILL DATA]</p>'
 systemConsole.innerHTML += '<p onclick="freeZerobux()"> > [FREE ZEROBUX]</p>'
 systemConsole.innerHTML += '<p onclick="loadSystem()"> > [CLOSE MENU]</p>'
 focusC()
@@ -156,7 +162,7 @@ focusC()
 
 function textEditor(txt2) {
 loadSystem();
-systemConsole.innerHTML += '<p> > ############ TEXT EDITOR ##############</p>'
+systemConsole.innerHTML += '<p> > ############ CYBERCHILL TEXT EDITOR ##############</p>'
 systemConsole.innerHTML += '<p onclick="loadTextEditor(document.getElementById(\'textEditor\').value)"> > [LOAD]</p>'
 systemConsole.innerHTML += '<p onclick="saveTextEditor(document.getElementById(\'textEditor\').value)"> > [SAVE]</p>'
 systemConsole.innerHTML += '<textarea placeholder="..." id="textEditor">'+txt2+'</textarea>'
@@ -166,7 +172,7 @@ focusC()
 function loadTextEditor(txt) {
 var txt2 = txt + ""
 loadSystem()
-systemConsole.innerHTML += '<p> > ############ TEXT EDITOR - LOAD ##############</p>'
+systemConsole.innerHTML += '<p> > ############ CYBERCHILL TEXT EDITOR - LOAD ##############</p>'
 i = 0
 var files = localStorage.cccszerotextfiles
 files = files.split("##cccszero##")
@@ -181,7 +187,7 @@ systemConsole.innerHTML += '<p onclick="textEditor(\''+txt2+'\')"> > [CANCEL]</p
 function saveTextEditor(txt) {
 var txt2 = txt + ""
 loadSystem()
-systemConsole.innerHTML += '<p> > ############ TEXT EDITOR - SAVE ##############</p>'
+systemConsole.innerHTML += '<p> > ############ CYBERCHILL TEXT EDITOR - SAVE ##############</p>'
 i = 0
 var files = localStorage.cccszerotextfiles
 files = files.split("##cccszero##")
@@ -201,7 +207,7 @@ localStorage.cccszerotextfiles = localStorage.cccszerotextfiles + "##cccszero##"
 
 function saveAsTextEditorFile0(txt) {
 loadSystem()
-systemConsole.innerHTML += '<p> > ############ TEXT EDITOR - SAVE CURRENT FILE ##############</p>'
+systemConsole.innerHTML += '<p> > ############ CYBERCHILL TEXT EDITOR - SAVE CURRENT FILE ##############</p>'
 systemConsole.innerHTML += '<p > > What do you want to call your new file?</p>'
 systemConsole.innerHTML += '<p> > <input id="textEditorFileNameInput" type="search" placeholder="..."></p>'
 systemConsole.innerHTML += '<p onclick="textEditorFileNameSubmit(\''+txt+'\')"> > [SAVE]</p>'
@@ -246,9 +252,126 @@ function freeZerobux() {
 loadSystem()
 systemConsole.innerHTML += '<p> > Here is 1000000000 ZeroBux, I guess...</p>'
 systemConsole.innerHTML += '<p> > Current ZeroBux Balance: 1000000000 ZeroBux</p>'
+focusC()
+}
+
+
+function ccData(txt2) {
+txt2 = decompressCcData(txt2)
+loadSystem();
+systemConsole.innerHTML += '<p> > ############ CYBERCHILL DATA ##############</p>'
+systemConsole.innerHTML += '<p onclick="loadCcData(document.getElementById(\'ccData\').innerHTML)"> > [LOAD]</p>'
+systemConsole.innerHTML += '<p onclick="saveCcData(document.getElementById(\'ccData\').innerHTML)"> > [SAVE]</p>'
+systemConsole.innerHTML += '<p onclick="addRowCcData(document.getElementById(\'ccData\').innerHTML)"> > [ADD ROW]</p>'
+systemConsole.innerHTML += '<div placeholder="..." id="ccData">'+txt2+'</div>'
+document.getElementById('ccData').innerHTML += "<p>###################################################</p>"
+focusC()
+}
+
+
+function addRowCcData(txt) {
+document.getElementById('ccData').innerHTML += "<p># <span contenteditable=\"true\">...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> # <span contenteditable='true'>...</span> #</p><p>###################################################</p>"
+focusC()
+}
+
+function compressCcData(txt) {
+var txt2 = txt.replace(/\<span contenteditable=\"true\"\>/g,"#d#")
+var txt3 = txt2.replace(/\<\/span\>/g,"#d0#")
+var txt4 = txt3.replace(/\<p\>###################################################\<\/p\>/g,"#d1#")
+return(txt4)
+}
+
+function decompressCcData(txt) {
+var txt2 = txt.replace(/#d#/g,"<span contenteditable=\"true\">")
+var txt3 = txt2.replace(/#d0#/g,"</span>")
+var txt4 = txt3.replace(/#d1#/g,"<p>###################################################</p>")
+return(txt4)
+}
+
+
+function saveCcData(txt) {
+var txt2 = txt + ""
+loadSystem()
+systemConsole.innerHTML += '<p> > ############ CYBERCHILL DATA - SAVE ##############</p>'
+i = 0
+var files = localStorage.cccszerotextfiles2
+files = files.split("##cccszero##")
+while(i < files.length) {
+var file = files[i].split("##cccszeroA##")
+systemConsole.innerHTML += '<p onclick="saveCcDataFile(this.innerHTML,\''+compressCcData(txt2)+'\')"> > ['+file[0]+']</p>'
+i = i + 1
+}
+systemConsole.innerHTML += '<p onclick="saveAsCcDataFile0(\''+compressCcData(txt2)+'\')"> > [SAVE CURRENT FILE]</p>'
+systemConsole.innerHTML += '<p onclick="ccData(\''+decompressCcData(txt2)+'\')"> > [CANCEL]</p>'
+focusC()
+}
+
+function saveAsCcDataFile(name,txt) {
+localStorage.cccszerotextfiles2 = localStorage.cccszerotextfiles2 + "##cccszero##" + name + "##cccszeroA##" + compressCcData(txt)
+}
+
+function saveAsCcDataFile0(txt) {
+loadSystem()
+systemConsole.innerHTML += '<p> > ############ CYBERCHILL DATA - SAVE CURRENT FILE ##############</p>'
+systemConsole.innerHTML += '<p > > What do you want to call your new file?</p>'
+systemConsole.innerHTML += '<p> > <input id="ccDataFileNameInput" type="search" placeholder="..."></p>'
+systemConsole.innerHTML += '<p onclick="CcDataFileNameSubmit(\''+txt+'\')"> > [SAVE]</p>'
+systemConsole.innerHTML += '<p onclick="saveTextEditor(\''+txt+'\')"> > [CANCEL]</p>'
+focusC()
+}
+
+function CcDataFileNameSubmit(txt) {
+saveAsCcDataFile(document.getElementById("ccDataFileNameInput").value,txt)
+ccData(decompressCcData(txt))
+}
+
+function saveCcDataFile(name,txt) {
+var txt2 = txt + ""
+loadSystem()
+i = 0
+var files = localStorage.cccszerotextfiles2
+files = files.split("##cccszero##")
+while(i < files.length) {
+var file = files[i].split("##cccszeroA##")
+if(name == " &gt; ["+file[0]+"]") {
+files[i] = file[0] + "##cccszeroA##" + txt2
+}
+i = i + 1
+}
+
+var newFiles = files[0]
+
+i = 1
+while(i < files.length) {
+var newFile = files[i].split("##cccszeroA##")
+newFiles += "##cccszero##" + newFile[0] + "##cccszeroA##" + newFile[1]
+i = i + 1
+}
+localStorage.cccszerotextfiles2 = newFiles
+
+ccData(decompressCcData(txt2))
+focusC()
+}
+
+
+function loadCcData(txt) {
+var txt2 = txt + ""
+loadSystem()
+systemConsole.innerHTML += '<p> > ############ CYBERCHILL DATA - LOAD ##############</p>'
+i = 0
+var files = localStorage.cccszerotextfiles2
+files = files.split("##cccszero##")
+while(i < files.length) {
+var file = files[i].split("##cccszeroA##")
+systemConsole.innerHTML += '<p onclick="ccData(\''+file[1]+'\')"> > ['+file[0]+']</p>'
+i = i + 1
+}
+systemConsole.innerHTML += '<p onclick="ccData(\''+txt2+'\')"> > [CANCEL]</p>'
 }
 
 alert("WARNING! UNDER DEVELOPMENT!")
+
+
 
 </script>
 </body>
